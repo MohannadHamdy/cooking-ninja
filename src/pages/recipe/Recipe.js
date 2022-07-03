@@ -2,12 +2,15 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import "./recipe.scss";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Recipe = () => {
   const { Id } = useParams();
   const [itemData, setItemData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { mode } = useContext(ThemeContext);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -38,7 +41,7 @@ const Recipe = () => {
   // title ingredients method cookingTime
 
   return (
-    <div className="recipe">
+    <div className={`recipe ${mode}`}>
       {error && <p className="error">Error: {error}</p>}
       {loading && <p className="loading">Hang on...</p>}
       {itemData && (

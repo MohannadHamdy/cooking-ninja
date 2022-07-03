@@ -1,11 +1,15 @@
 import "./RecipeList.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 const RecipeList = ({ data }) => {
+  const { mode } = useContext(ThemeContext);
+
   return (
     <div className="recipe-list">
       {data.map((recipe) => (
-        <div className="card" key={recipe.id}>
+        <div className={`card ${mode}`} key={recipe.id}>
           <h3>{recipe.title}</h3>
           <p>{recipe.ingredients}</p>
           <p>{recipe.cookingTime} to make</p>
