@@ -1,5 +1,7 @@
 import "./create.scss";
 import { useRef, useState } from "react";
+import { db } from "../../firebase/config";
+import { collection, addDoc } from "firebase/firestore";
 
 const Create = () => {
   const [title, setTitle] = useState("");
@@ -11,11 +13,19 @@ const Create = () => {
 
   const ingredientInput = useRef(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setRecipe({ title, method, cookingTime });
 
-    console.log(title, method, cookingTime);
+    console.log(recipe);
+
+    const ref = collection(db, "recipes");
+
+    await addDoc(ref, {
+      title,
+      method,
+      cookingTime,
+    });
   };
 
   const handleAdd = (e) => {

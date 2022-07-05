@@ -12,7 +12,7 @@ const RecipeList = ({ data }) => {
         <div className={`card ${mode}`} key={recipe.id}>
           <h3>{recipe.title}</h3>
           <p>{recipe.ingredients}</p>
-          <p>{recipe.cookingTime} to make</p>
+          <p>{recipe.cookingTime} mins to make</p>
           <Link to={`/recipes/${recipe.id}`}>read more</Link>
         </div>
       ))}

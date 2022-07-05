@@ -1,15 +1,9 @@
 import "./home.scss";
 import RecipeList from "../../components/RecipeList";
-import { useFetch } from "../../hooks/useFetch";
-
+// import { useFetch } from "../../hooks/useFetch";
+import { useCollection } from "../../hooks/useCollection";
 const Home = () => {
-  const { error, loading, data } = useFetch(`http://localhost:3000/recipes`);
-
-  // useEffect(() => {
-  //   axios.get("https://jsonplaceholder.typicode.com/todos/").then((res) => {
-  //     console.log(res.data);
-  //   });
-  // }, []);
+  const { data, error, loading } = useCollection("recipes");
 
   return (
     <div className="home">
